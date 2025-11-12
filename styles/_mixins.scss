@@ -1,0 +1,68 @@
+@use '_variables' as *;
+
+@mixin input-field($width) {
+  width: $width;
+  height: 30px;
+  background: $black;
+  color: $white;
+  border: 1px solid $grey-light;
+  padding: $small-spacing;
+  font-size: $default-font-size;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px $black inset;
+    -webkit-text-fill-color: $white;
+  }
+
+  &.with-count {
+    padding: $small-spacing calc($small-spacing*7) $small-spacing $small-spacing;
+  }
+
+  @media (max-width: 600px) {
+    flex: 1;
+  }
+}
+
+@mixin field-space() {
+  min-height: $field-min-height;
+  margin-top: $small-spacing;
+  margin-bottom: $small-spacing;
+}
+
+@mixin site-nav-btn() {
+  display: block;
+  width: 100%;
+  padding: $default-spacing;
+  font-size: $big-font-size;
+  text-align: left;
+  text-decoration: none;
+  color: $white;
+
+  @media (max-width: 600px) {
+    font-size: $medium-font-size;
+    padding: $medium-spacing;
+  }
+
+  &:hover {
+    background: $green;
+  }
+}
+
+@mixin visually-hidden() {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@mixin highlighted-btn-icon() {
+  background: $white;
+
+  svg {
+    // filter: invert(100%);
+    mix-blend-mode: difference;
+  }
+}

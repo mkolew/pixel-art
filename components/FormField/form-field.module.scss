@@ -1,0 +1,91 @@
+@use '../../styles/_variables' as *;
+@use '../../styles/_mixins' as *;
+
+.form-field {
+  display: block;
+  width: 100%;
+
+  &.inline {
+    .field {
+      align-items: center;
+      flex-wrap: nowrap;
+
+      label {
+        min-width: $label-min-width;
+        margin-bottom: 0;
+      }
+    }
+
+    .message {
+      text-align: right;
+    }
+  }
+
+  .field {
+    position: relative;
+    font-size: $medium-font-size;
+    display: flex;
+    flex-wrap: wrap;
+    @include field-space;
+
+    label {
+      display: block;
+      margin-bottom: $small-spacing;
+      margin-right: $default-spacing;
+    }
+
+    .value {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      button {
+        display: flex;
+      }
+
+      span {
+        margin-left: $small-spacing;
+        margin-right: $small-spacing;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+        width: 150px;
+        flex: 1 1 100%;
+      }
+    }
+
+    .input {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      input {
+        @include input-field(10px);
+        flex: 1 1 100%;
+      }
+
+      .input-count {
+        position: absolute;
+        right: $small-spacing;
+        font-size: $default-font-size;
+      }
+    }
+  }
+
+  .message {
+    font-size: $default-font-size;
+    margin-top: $small-spacing;
+    margin-bottom: $small-spacing;
+    display: block;
+
+    &.error-message {
+      color: $red-light;
+    }
+
+    &.success-message {
+      color: $green;
+    }
+  }
+}

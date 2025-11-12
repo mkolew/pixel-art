@@ -1,0 +1,16 @@
+@use '../../styles/_variables' as *;
+
+.toast {
+  position: fixed;
+  right: $default-spacing;
+  bottom: calc($footer-height + $default-spacing);
+  z-index: $z-index-middle;
+
+  &.account-menu-opened {
+    right: calc($account-menu-width + $default-spacing);
+  }
+
+  @media (max-width: 600px) {
+    left: $default-spacing;
+  }
+}

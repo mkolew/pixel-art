@@ -1,0 +1,157 @@
+@use '../../styles/_variables' as *;
+@use '../../styles/_mixins' as *;
+
+.paint {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: calc(
+    100vh - $header-height - $header-border-top - $footer-height - ($default-spacing * 2)
+  );
+
+  .actions {
+    position: absolute;
+    z-index: $z-index-middle;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .actions-toggle {
+      width: 100px;
+      margin-left: -$default-spacing;
+      display: flex;
+      height: 0;
+      position: relative;
+
+      &.collapsed {
+        width: 30px;
+
+        button {
+          transform: rotate(180deg);
+        }
+      }
+
+      @media (max-width: 600px) {
+        width: 70px;
+
+        &.collapsed {
+          width: 14px;
+        }
+      }
+
+      button {
+        position: absolute;
+        z-index: $z-index-top;
+        width: 30px;
+        height: 72px;
+        top: 0;
+        right: 0;
+
+        @media (max-width: 600px) {
+          height: 58px;
+          right: -16px;
+        }
+      }
+    }
+
+    .toolbar {
+      margin-bottom: $default-spacing;
+
+      @media (max-width: 600px) {
+        margin-bottom: $small-spacing;
+      }
+    }
+
+    .toolbar,
+    .actionbar {
+      width: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: -$default-spacing;
+
+      &.collapsed {
+        margin-left: -97px;
+      }
+
+      button {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        padding: 15px;
+        border-top: 2px solid $white;
+        border-right: 2px solid $white;
+        border-left: 2px solid $white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width: 600px) {
+          width: 56px;
+          height: 56px;
+          padding: $small-spacing;
+        }
+
+        &:last-child {
+          border-bottom: 2px solid $white;
+        }
+
+        &:hover {
+          @include highlighted-btn-icon;
+        }
+
+        .color-palette {
+          @include visually-hidden;
+        }
+      }
+    }
+
+    .actionbar {
+      button {
+        &:first-child {
+          svg {
+            mix-blend-mode: difference;
+          }
+        }
+      }
+    }
+  }
+
+  .board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    canvas {
+      cursor: crosshair;
+      width: 600px;
+      height: 600px;
+
+      @media (max-width: 600px) {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    .examples {
+      height: 600px;
+      margin-left: $small-spacing;
+
+      button {
+        display: flex;
+        margin-bottom: $small-spacing;
+        border: 5px solid $white;
+      }
+    }
+  }
+
+  :global {
+    .highlighted {
+      @include highlighted-btn-icon;
+    }
+  }
+}
