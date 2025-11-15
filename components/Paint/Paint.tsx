@@ -369,31 +369,27 @@ export function Paint() {
     }
 
     if (canvasCtx) {
-      canvasCtx.canvas.toBlob(async (blob: Blob | null) => {
+      canvasCtx.canvas.toBlob((blob: Blob | null) => {
         if (blob) {
-          const formData = new FormData();
-          formData.append('file', blob, name);
-          await fetch('/api/save-drawing', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-            body: formData,
-          })
-            .then(async (r) => {
-              const response = await r.json();
-              addToast({
-                type: 'success',
-                message: response.data.message,
-              });
-            })
-            .catch((e: Error) => {
-              addToast({
-                type: 'error',
-                message: e?.message,
-              });
-            });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${name}.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+
+          addToast({
+            type: 'success',
+            message: 'Drawing saved successfully!',
+          });
           setShowPopUp(false);
+        } else {
+          addToast({
+            type: 'error',
+            message: 'Failed to create image blob',
+          });
         }
       });
     }
