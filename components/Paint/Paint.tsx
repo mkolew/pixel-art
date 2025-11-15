@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './paint.module.scss';
 
 import {

@@ -18,7 +18,7 @@
   }
 
   @media (max-width: 600px) {
-    top: calc($header-border-top + $header-height);
+    top: 0;
     left: 0;
     transform: none;
     width: 100%;

@@ -5,9 +5,7 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: calc(
-    100vh - $header-height - $header-border-top - $footer-height - ($default-spacing * 2)
-  );
+  height: 100vh;
 
   .actions {
     position: absolute;
@@ -20,7 +18,6 @@
 
     .actions-toggle {
       width: 100px;
-      margin-left: -$default-spacing;
       display: flex;
       height: 0;
       position: relative;
@@ -70,7 +67,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-left: -$default-spacing;
 
       &.collapsed {
         margin-left: -97px;
@@ -149,9 +145,7 @@
     }
   }
 
-  :global {
-    .highlighted {
-      @include highlighted-btn-icon;
-    }
+  :global(.highlighted) {
+    @include highlighted-btn-icon;
   }
 }

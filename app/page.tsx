@@ -4,7 +4,9 @@ import { Paint } from '@/components/Paint';
 export default function Home() {
   return (
     <GlobalContextProvider>
-      <Paint />
+      <div className="content">
+        <Paint />
+      </div>
     </GlobalContextProvider>
   );
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './form-field.module.scss';
 
 import { ChangeEventHandler, KeyboardEvent, useState } from 'react';
