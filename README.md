@@ -33,12 +33,14 @@ A modern pixel art drawing application built with Next.js, React, and TypeScript
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd pixel-art
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -46,6 +48,7 @@ npm install
 ### Development
 
 Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -55,11 +58,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Build
 
 Create a production build:
+
 ```bash
 npm run build
 ```
 
 Run the production build:
+
 ```bash
 npm start
 ```
@@ -67,6 +72,7 @@ npm start
 ### Linting
 
 Check code quality:
+
 ```bash
 npm run lint
 ```
@@ -117,6 +123,7 @@ pixel-art/
 ## Keyboard Shortcuts
 
 Currently, the app uses mouse/touch interactions. Future versions may include:
+
 - `Ctrl/Cmd + Z`: Undo
 - `Ctrl/Cmd + Y`: Redo
 - `Ctrl/Cmd + S`: Save
@@ -129,6 +136,21 @@ Currently, the app uses mouse/touch interactions. Future versions may include:
 - Edge
 
 Canvas API support required.
+
+## Deploy
+
+Cloudflare, from GitHub Actions — `.github/workflows/deploy.yml` runs `npm ci && npm run build`
+on every push to `main` and publishes `out/` with `wrangler`. Two repository secrets are
+required: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+
+`next.config.ts` sets `output: 'export'`, so the build is a static one — `out/` is plain files,
+served with no server runtime and no Worker invocation. Cloudflare serves static assets free and
+unlimited, so traffic cannot exhaust a quota or produce a bill. The app has no API routes, no
+middleware and no server actions, so nothing is lost by exporting.
+
+If a future change needs server-side rendering, `output: 'export'` has to go and the app needs an
+adapter — at which point every request becomes a metered Worker call. Worth knowing before adding
+one.
 
 ## Contributing
 

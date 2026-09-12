@@ -1,0 +1,17 @@
+# Cloudflare configuration for the Pixel Art app.
+#
+# Static assets only — there is no Worker script. Cloudflare serves asset requests free and
+# unlimited, so no amount of traffic can exhaust a quota or produce a bill; only Worker
+# invocations are metered, and this app makes none. That is why next.config.ts sets
+# output: 'export' rather than running Next's server runtime behind an adapter.
+#
+# The build runs in CI (.github/workflows/deploy.yml) because out/ is generated and stays out of
+# Git.
+
+name = "pixel-art"
+compatibility_date = "2026-09-12"
+
+[assets]
+directory = "out"
+# Next writes its own 404 page; without this Cloudflare would answer unknown paths with its own.
+not_found_handling = "404-page"
