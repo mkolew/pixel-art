@@ -11,6 +11,15 @@
 name = "pixel-art"
 compatibility_date = "2026-09-12"
 
+# The app answers on its own domain and nowhere else. Cloudflare creates and owns the DNS record
+# for this — do not hand-write it, and delete any record already on the name or the deploy will
+# refuse to take it over.
+#
+# workers_dev = false turns off the <name>.<subdomain>.workers.dev URL, which would otherwise
+# serve a second public copy of the same site for search engines to find.
+workers_dev = false
+routes = [{ pattern = "pixelart.funksome.com", custom_domain = true }]
+
 [assets]
 directory = "out"
 # Next writes its own 404 page; without this Cloudflare would answer unknown paths with its own.
